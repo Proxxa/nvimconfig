@@ -1,16 +1,4 @@
--- lazy.nvim boilerplate
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+require("lazyfile")
 
 -- Configure lazy packages
 require("lazy").setup({
@@ -44,6 +32,13 @@ require("lazy").setup({
 
 }, opts)
 
+-- Set up plugins
+require("nvtree")       -- nvim-tree (file tree)
+require("masonconf")    -- Mason
+require("color")        -- Color scheme
+require("line")         -- lualine
+require("rusty")        -- rust-tools
+
 -- Use nu
 vim.opt.shell = "nu"
 
@@ -51,13 +46,7 @@ vim.opt.shell = "nu"
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<Leader>t", "<cmd>vs +term<cr>")
-
--- Color scheme
-vim.o.background = "dark"
-require("catppuccin").setup({
-    flavor = "macchiato"
-})
-vim.cmd([[colorscheme catppuccin]])
+vim.keymap.set("n", "<Leader>e", "<cmd>NvimTreeOpen<cr>")
 
 -- Basic settings
 vim.wo.number = true
@@ -70,55 +59,10 @@ vim.opt.expandtab = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
-require("nvim-tree").setup({
-    view = {
-        width = 30,
-    },
-    filters = {
-        dotfiles = true,
-    },
-})
-
 
 -- configure mason (basic)
-require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
-})
-require("mason-lspconfig").setup()
 
-require("lualine").setup {
-    options = {
-        icons_enabled = false,
-        theme = "auto",
-        component_separators = " ",
-        section_separators = { left = "🭬", right = "🭮" },
-    },
-    sections = {
-        lualine_a = {
-            { 'mode', fmt = function(str) return str:sub(1,1) end }
-        },
-        lualine_b = {
-            { 'branch' }
-        },
-    }
-}
 
-local rt = require("rust-tools")
-
-rt.setup({
-    server = {
-        on_attach = function(_, bufnr) 
-            vim.keymap.set("n", rt.hover_actions.hover_actions, { buffer = bufnr })
-            vim.keymap.set("n", rt.code_action_group.code_action_group, { buffer = bufnr })
-        end
-    },
-})
 
 require("nvim-treesitter.configs").setup {
     ensure_installed = { "lua", "rust", "toml", },
