@@ -4,9 +4,14 @@ vim.opt.shell = "nu"
 -- Bindings
 vim.g.mapleader = " "
 
-local nmap = function(lhs, rhs) vim.keymap.set("n", lhs, rhs) end
+local nmap = function(lhs, rhs) vim.keymap.set("n", lhs, rhs, { silent = true }) end
 nmap("<Leader>t", "<cmd>vs +term<cr>")
 nmap("<Leader>e", "<cmd>NvimTreeOpen<cr>")
+nmap("<C-s>", ":w<cr>")
+
+
+local imap = function(lhs, rhs) vim.keymap.set("i", lhs, rhs, { silent = true }) end
+imap("<C-s>", "<esc>:w<cr>i<Right>")
 
 -- Basic settings
 vim.wo.number = true

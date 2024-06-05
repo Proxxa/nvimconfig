@@ -1,3 +1,5 @@
+package.path = "/home/yorip/.config/nvim/?.lua;" .. package.path
+
 require("plugconf.lazyfile")
 
 -- Configure lazy packages
@@ -29,6 +31,19 @@ require("lazy").setup({
     -- improve line
     "nvim-lualine/lualine.nvim",
 
+    -- Tailwind CSS
+    {
+        "luckasRanarison/tailwind-tools.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        opts = {} -- your configuration
+    },
+    {
+        'razak17/tailwind-fold.nvim',
+        opts = {},
+        dependencies = { 'nvim-treesitter/nvim-treesitter' },
+        ft = { 'html', 'svelte', 'typescriptreact', },
+    },
+
 
 }, opts)
 
@@ -40,6 +55,8 @@ require("plugconf.lualine")         -- lualine
 require("plugconf.rust-tools")      -- rust-tools
 require("plugconf.treesitter")      -- treesitter
 require("plugconf.presence")        -- discord presence
+-- require("plugconf.tailwind")     -- Unnecessary
+require'lspconfig'.svelte.setup{}
 
 -- Include configuration
 require("config")
