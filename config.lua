@@ -6,11 +6,15 @@ vim.opt.shell = "nu"
 -- Bindings
 vim.g.mapleader = " "
 
-map.n("<Leader>t", "<cmd>vs +term<cr>")
-map.n("<Leader>e", "<cmd>NvimTreeOpen<cr>")
-map.n("<C-s>", ":w<cr>")
+-- Bindings/Tabs
 
+-- Bindings/Buffers
+map.n("<C-q>", ":q<cr>")
+map.n("<C-s>", ":w<cr>")
 map.i("<C-s>", "<esc>:w<cr>i<Right>")
+
+-- Bindings/Windows
+map.n("<Leader>t", "<cmd>vs +term<cr>")
 
 -- Basic settings
 vim.wo.number = true
