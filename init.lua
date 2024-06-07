@@ -7,6 +7,3 @@ require("scripts")
 
 -- Lazy automatically loads everything from lua/plugins
 require("lazy").setup("plugins")
-
-
-
