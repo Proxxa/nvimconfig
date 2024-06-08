@@ -22,3 +22,25 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+
+-- Don't want to reset curdir when loading a view
+vim.cmd "set viewoptions-=curdir"
+
+-- Folding Save
+local foldaug = vim.api.nvim_create_augroup("FoldingSave", {})
+
+vim.api.nvim_create_autocmd("BufWinLeave", {
+    group = foldaug,
+    callback = function(ev)
+        local bufnr = vim.fn.bufnr("%")
+        local isfile = vim.fn.getbufvar(bufnr, "&buftype") == ""
+        if isfile then
+            vim.cmd "mkview"
+        end
+    end,
+})
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    group = foldaug,
+    command = "silent! loadview",
+})
