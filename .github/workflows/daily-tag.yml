@@ -16,8 +16,7 @@ jobs:
     - name: Generate tag if necessary
       run: |
         # Configure current user just in case
-        git remote remove origin
-        git remote add https://${{ github.token }}@github.com/Proxxa/nvimconfig
+        git remote set-url origin https://${{ github.token }}@github.com/Proxxa/nvimconfig
 
         export TAG="$(git describe --tags)"
         export ABBREV="$(git describe --tags --abbrev=0)"
