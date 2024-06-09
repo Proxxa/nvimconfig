@@ -8,13 +8,13 @@ on:
 jobs:
   create-tag:
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
     - name: Checkout
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
     - name: Generate tag if necessary
-      permissions: write-all
       run: |
         # Configure current user just in case
         git remote set-url origin https://${{ github.token }}@github.com/Proxxa/nvimconfig
