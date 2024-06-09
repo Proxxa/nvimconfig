@@ -11,9 +11,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 2
-      run: git checkout HEAD
     - name: Generate shell information
       id: shellinfo
       # --abbrev=0 turns "Tagname-NCommitsSince-Hash" into "Tagname"
