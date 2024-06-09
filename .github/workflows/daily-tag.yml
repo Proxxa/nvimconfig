@@ -14,6 +14,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: Generate tag if necessary
+      permissions: write-all
       run: |
         # Configure current user just in case
         git remote set-url origin https://${{ github.token }}@github.com/Proxxa/nvimconfig
