@@ -28,7 +28,7 @@ jobs:
         echo "::set-output name=tag::$(git describe --tags)"           
         echo "::set-output name=tagabbrev::$(git describe --tags --abbrev=0)"
     - name: Create tag
-    - uses: actions/github-script@v7
+      uses: actions/github-script@v7
       env:
         DATE: '${{steps.shellinfo.outputs.date}}'
         TAG:  '${{steps.shellinfo.outputs.tag}}'
