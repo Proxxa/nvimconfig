@@ -16,9 +16,6 @@ jobs:
     - name: Generate tag if necessary
       run: |
         # Configure current user just in case
-        
-        git config user.name "github-actions[bot]"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
         export TAG="$(git describe --tags)"
         export ABBREV="$(git describe --tags --abbrev=0)"
