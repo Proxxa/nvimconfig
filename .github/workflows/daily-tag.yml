@@ -18,7 +18,7 @@ jobs:
         # Configure current user just in case
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        if [ "$(git describe --tags)" = "$(git describe --tags --abbrev=0)"]; then
+        if [ "$(git describe --tags)" = "$(git describe --tags --abbrev=0)" ]; then
           echo "FOUND DIFFERENCES SINCE LAST TAG. GENERATING NEW."
           git tag "$(date +'%a-%b-%m-%d')"
           git push --all
