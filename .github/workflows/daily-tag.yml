@@ -16,10 +16,15 @@ jobs:
     - name: Generate tag if necessary
       run: |
         # Configure current user just in case
-        git checkout master
+        
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        if [ "$(git describe --tags)" = "$(git describe --tags --abbrev=0)" ]; then
+
+        export TAG="$(git describe --tags)"
+        export ABBREV="$(git describe --tags --abbrev=0)"
+        echo -e "TAG: $TAG\nABBREV: $ABBREV"
+        
+        if [ "$TAG" = "$ABBREV" ]; then
           echo "FOUND DIFFERENCES SINCE LAST TAG. GENERATING NEW."
           git tag "$(date +'%a-%b-%m-%d')"
           git push --all
