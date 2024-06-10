@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd("BufWinLeave", {
         local bufnr = vim.fn.bufnr("%")
         local isfile = vim.fn.getbufvar(bufnr, "&buftype") == ""
         if isfile then
-            vim.cmd "mkview"
+            vim.cmd "silent! mkview"
         end
     end,
 })
