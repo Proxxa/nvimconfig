@@ -1,4 +1,5 @@
-package.path = "/home/yorip/.config/nvim/?.lua;/home/yorip/.config/nvim/lua/;" .. package.path
+local config_path = vim.fn.stdpath("config")
+package.path = config_path .. "/?.lua;" .. config_path .. "/lua/;" .. package.path
 
 require("lazy-nvim")
 
