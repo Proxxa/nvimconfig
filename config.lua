@@ -10,9 +10,9 @@ vim.g.mapleader = " "
 -- Bindings/Tabs
 
 -- Bindings/Buffers
-map.n("<C-q>", ":q<cr>")
-map.n("<C-s>", ":w<cr>")
-map.i("<C-s>", "<esc>:w<cr>i<Right>")
+map.n("<C-Q>", function() vim.cmd.quit() end)
+map.n("<C-S>", function() vim.cmd.write("%") end)
+map.i("<C-S>", function() vim.cmd.write("%") end)
 
 -- Bindings/Windows
 map.n("<Leader>t", "<cmd>vs +term<cr>")
