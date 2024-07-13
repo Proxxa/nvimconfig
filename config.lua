@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 local map = require("util.map")
 
 -- Use nu
@@ -31,7 +32,7 @@ local foldaug = vim.api.nvim_create_augroup("FoldingSave", {})
 
 vim.api.nvim_create_autocmd("BufWinLeave", {
     group = foldaug,
-    callback = function(ev)
+    callback = function(_)
         local bufnr = vim.fn.bufnr("%")
         local isfile = vim.fn.getbufvar(bufnr, "&buftype") == ""
         if isfile then

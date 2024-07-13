@@ -22,7 +22,7 @@ return {
                         hide_parent_dir = true,
                         hijack_netrw = true,
                     },
-                }, 
+                },
             }
 
         end,

@@ -1,6 +1,7 @@
+---@diagnostic disable: undefined-global
 local M = {}
 
-function M.nil() end
+function M.nul() end
 
 function M.confirm_action(confirm_prompt, callback)
     vim.ui.select({ 'yes', 'no' }, {
@@ -8,12 +9,12 @@ function M.confirm_action(confirm_prompt, callback)
         format_item = function(item)
             return '(' .. string.sub(item, 1, 1) .. ')' .. string.sub(item, 2, -1)
         end
-    },  function(choice)    
+    },  function(choice)
             if choice == nil then
                 print("Cancelled.")
                 return
             end
-            first_char = string.lower(string.sub(choice, 1, 1))
+            local first_char = string.lower(string.sub(choice, 1, 1))
             if first_char == 'y' then callback() else print('Cancelled.') end
         end)
 end

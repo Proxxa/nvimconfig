@@ -1,11 +1,13 @@
+---@diagnostic disable: undefined-global
+
 return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
         -- Table of custom tab names for tabline
         vim.g.__lualine_tab_names = {}
-        
         -- Command for Renaming
+
         vim.api.nvim_create_user_command(
             "TabRename",
             function(data)
@@ -34,6 +36,7 @@ return {
                 local idx = tonumber(ev.file)
                 local table_copy = vim.g.__lualine_tab_names
 
+                if not idx then return end
                 table_copy[idx] = nil
                 for k,v in pairs(table_copy) do
                     if k > idx then
@@ -98,27 +101,26 @@ return {
                             -- Account for vim.NIL
                             custom_name = (custom_name ~= vim.NIL) and custom_name or nil
                             local disp_name = ""
-                             
+
                             local buflist = vim.fn.tabpagebuflist(tabnr)
                             local winnr = vim.fn.tabpagewinnr(tabnr)
                             local bufnr = buflist[winnr]
 
                             -- nil is false.
                             if custom_name then
-                                disp_name = custom_name    
-                            else                                          
-                                -- Never use the default name for terminals
+                                disp_name = custom_name
+                            else                                -- Never use the default name for terminals
                                 if vim.fn.getbufvar(bufnr, "&buftype") == "terminal" then
                                     disp_name = "Terminal"
                                 else
                                     disp_name = name
                                 end
                             end
-                            
+
                             local mod = vim.fn.getbufvar(bufnr, "&mod")
                             return disp_name .. (mod == 1 and "*" or "")
                         end,
-                    }, 
+                    },
                 },
             },
         }
