@@ -23,6 +23,7 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.o.virtualedit = "block,onemore"
 
 -- Don't want to reset curdir when loading a view
 vim.cmd "set viewoptions-=curdir"
