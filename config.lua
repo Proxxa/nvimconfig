@@ -1,8 +1,8 @@
 ---@diagnostic disable: undefined-global
 local map = require("util.map")
 
--- Use nu
-vim.opt.shell = "nu"
+-- Use user's shell.
+vim.opt.shell = os.getenv("SHELL")
 
 -- Bindings
 vim.g.mapleader = " "
