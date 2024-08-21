@@ -13,7 +13,7 @@ vim.g.mapleader = " "
 map.n("<C-Q>", function() vim.cmd.quit() end)
 map.n("<C-S>", function() vim.cmd.write("%") end)
 map.i("<C-S>", function() vim.cmd.write("%") end)
-
+map.t("<esc>", "<C-\\><C-n>")
 -- Bindings/Windows
 map.n("<Leader>t", "<cmd>vs +term<cr>")
 
