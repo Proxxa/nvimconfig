@@ -13,18 +13,13 @@ return {
             function(data)
                 local table_copy = vim.g.__lualine_tab_names
                 local tabnr = (data.count ~= -1 and data.count) or vim.fn.tabpagenr()
-                local input = vim.trim(data.args)
 
                 table_copy[tabnr] = data.args ~= "" and data.args or nil
 
                 vim.g.__lualine_tab_names = table_copy
             end,
             {
-                desc =  "A command for renaming tabs.\n\n" ..
-
-                        "Creates/removes an entry in a table used to customize the display name\n" ..
-                        "of a tab in the tabline. If a count is provided, the command modifies the name\n" ..
-                        "of that tab. If no name is provided, the command resets the name.",
+                desc =  "Rename a tab in lualine",
                 nargs = "?",
                 force = true,
             }

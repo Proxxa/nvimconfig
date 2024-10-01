@@ -16,6 +16,18 @@ map.i("<C-S>", function() vim.cmd.write("%") end)
 map.t("<esc>", "<C-\\><C-n>")
 -- Bindings/Windows
 map.n("<Leader>t", "<cmd>vs +term<cr>")
+-- Bindings/Tabs
+map.n("gnt", function() vim.cmd.tabedit() end)
+map.n("grt", function()
+    vim.ui.input({ 
+        prompt = "Enter tab name: ", 
+        default = vim.g.__lualine_tab_names[vim.fn.tabpagenr()] or ""
+    },
+        function(input)
+            vim.cmd("TabRename " .. input)
+        end
+    )
+end)
 
 -- Basic settings
 vim.wo.number = true
