@@ -19,8 +19,8 @@ map.n("<Leader>t", "<cmd>vs +term<cr>")
 -- Bindings/Tabs
 map.n("gnt", function() vim.cmd.tabedit() end)
 map.n("grt", function()
-    vim.ui.input({ 
-        prompt = "Enter tab name: ", 
+    vim.ui.input({
+        prompt = "Enter tab name: ",
         default = vim.g.__lualine_tab_names[vim.fn.tabpagenr()] or ""
     },
         function(input)
